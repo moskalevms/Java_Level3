@@ -18,23 +18,33 @@ import java.util.List;
  * g.	Не забываем про метод добавления фрукта в коробку.
  */
 
-public class Box<T> {
+public class Box<E extends Fruit> { //ограничиваю сверху обощенный тип Е с помощью интерфейса Fruit
 
-    List<T> fullBox = new ArrayList<>(); //для хранения фруктов внутри коробки
+    private List<E> fruits = new ArrayList<>();
 
-    public static void main(String[] args) {
-
-        Box box = new Box();
-        Fruit apple1 = new Apple("apple", 1.0f);
-        Fruit orange1 = new Orange("orange1", 1.5f);
-
+    public void add(E fruit){
+      fruits.add(fruit);
     }
 
-    //Метод определения веса коробки. На вход - вес фруктов и их количество
-    public void getBoxWeight(float weightFruits, int numbers ){
-        float weightBox = 0.0f;
-        fullBox.add((T) new Fruit());
+    public void moveToAll(Box<E> anotherBox){ //перемещаем все фрукты из текущей коробки в ту коробку, которую передали на вход
+        for (E fruit : fruits){
+            anotherBox.add(fruit);
+        }
 
+        fruits.clear();
+    }
+
+
+    public boolean compareTo(Box<?> anotherBox){
+        return Math.abs(this.getWeight() - anotherBox.getWeight()) < 0.0001;
+    }
+
+    public double getWeight(){
+        double sum = 0.0;
+        for(E fruit : fruits){
+            sum += fruit.getWeight();
+        }
+        return sum;
     }
 
 }
