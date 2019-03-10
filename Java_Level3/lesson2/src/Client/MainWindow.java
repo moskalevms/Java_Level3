@@ -93,7 +93,7 @@ public class MainWindow extends JFrame implements MessageSender {
                     if (network != null) {
                         network.close();
                     }
-                } catch (IOException e1) {
+                } catch (Exception e1) {
                     e1.printStackTrace();
                 }
                 super.windowClosing(e);
@@ -102,7 +102,7 @@ public class MainWindow extends JFrame implements MessageSender {
 
         setVisible(true);
 
-        network = new Network("localhost", 7777, this);
+       // network = new Network("localhost", 7777, this);
 
         LoginDialog loginDialog = new LoginDialog(this, network);
         loginDialog.setVisible(true);

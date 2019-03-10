@@ -1,9 +1,9 @@
-package Client;
+package javafx;
 
 import javafx.application.Platform;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javax.swing.*;
+
 import java.io.Closeable;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -146,4 +146,3 @@ public class Network implements Closeable {
         }
     }
 }
-
